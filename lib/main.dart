@@ -17,6 +17,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:ecommerce/app_setting/views/home_page_screen.dart';
 
 
 void main() {
@@ -27,6 +28,9 @@ void main() {
 class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
-    return Text('ahmed');
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage()
+    );
   }
 }

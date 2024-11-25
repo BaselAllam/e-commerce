@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               shape: BoxShape.circle
             ),
             child: IconButton(
-              icon: Icon(Icons.notifications, color: AppColors.blackColor, size: 20.0,),
+              icon: Icon(Icons.notifications, color: AppColors.greenColor, size: 20.0,),
               onPressed: () {},
               ),
           )

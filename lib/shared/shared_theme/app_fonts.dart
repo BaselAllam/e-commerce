@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class AppFonts {
 
-  static TextStyle primaryGreenStyle = TextStyle(color: AppColors.greenColor, fontSize: 20, fontWeight: FontWeight.bold);
-  static TextStyle subGreenStyle = TextStyle(color: AppColors.greenColor, fontSize: 15, fontWeight: FontWeight.bold);
-  static TextStyle miniGreenStyle = TextStyle(color: AppColors.greenColor, fontSize: 12, fontWeight: FontWeight.bold);
+  static TextStyle primaryJeansStyle = TextStyle(color: AppColors.jeansColor, fontSize: 20, fontWeight: FontWeight.bold);
+  static TextStyle subJeansStyle = TextStyle(color: AppColors.jeansColor, fontSize: 15, fontWeight: FontWeight.bold);
+  static TextStyle miniJeansStyle = TextStyle(color: AppColors.jeansColor, fontSize: 12, fontWeight: FontWeight.bold);
   static TextStyle primaryBlackStyle = TextStyle(color: AppColors.blackColor, fontSize: 20, fontWeight: FontWeight.bold);
   static TextStyle subBlackStyle = TextStyle(color: AppColors.blackColor, fontSize: 15, fontWeight: FontWeight.bold);
   static TextStyle miniBlackStyle = TextStyle(color: AppColors.blackColor, fontSize: 12, fontWeight: FontWeight.bold);

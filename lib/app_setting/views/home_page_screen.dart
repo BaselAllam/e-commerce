@@ -1,5 +1,7 @@
+import 'package:ecommerce/app_setting/views/notification_screen.dart';
 import 'package:ecommerce/shared/shared_theme/app_colors.dart';
 import 'package:ecommerce/shared/shared_theme/app_fonts.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -110,9 +112,11 @@ class _HomePageState extends State<HomePage> {
             ),
             child: IconButton(
               icon: Icon(Icons.notifications, color: AppColors.jeansColor, size: 20.0,),
-              onPressed: () {},
-              ),
-          )
+              onPressed: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (_) => NotificationScreen()));
+              },
+            ),
+          ),
         ],
       ),
       body: ListView(

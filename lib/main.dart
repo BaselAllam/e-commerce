@@ -9,8 +9,8 @@
 
 */
 
+import 'package:ecommerce/app_setting/views/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/app_setting/views/home_page_screen.dart';
 
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage()
+      home: BottomNavBarScreen()
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:ecommerce/shared/shared_theme/app_colors.dart';
 import 'package:ecommerce/shared/shared_theme/app_fonts.dart';
+import 'package:ecommerce/shared/shared_widgets/back_btn.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,19 +19,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         elevation: 0.0,
         title: Text('Notifications', style: AppFonts.primaryBlackStyle),
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            margin: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.blackColor, width: 0.5),
-              shape: BoxShape.circle
-            ),
-            child: Icon(Icons.arrow_back_ios, color: AppColors.blackColor, size: 20.0),
-          ),
-        ),
+        leading: BackBtn(),
         backgroundColor: Colors.transparent,
         actions: [
           Container(

@@ -1,57 +1,14 @@
-import 'package:ecommerce/app_setting/views/notification_screen.dart';
+import 'package:ecommerce/product/views/all_categories_screen.dart';
+import 'package:ecommerce/product/views/search_result_screen.dart';
 import 'package:ecommerce/shared/shared_theme/app_colors.dart';
 import 'package:ecommerce/shared/shared_theme/app_fonts.dart';
+import 'package:ecommerce/shared/shared_widgets/notification_button.dart';
+import 'package:ecommerce/shared/shared_widgets/product_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  List<String> imgs = [
-    'https://images.pexels.com/photos/735551/pexels-photo-735551.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/2468789/pexels-photo-2468789.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/5869617/pexels-photo-5869617.jpeg?auto=compress&cs=tinysrgb&w=800'
-  ];
-
-  List categories = [
-    {
-      'icon': Icons.pets,
-      'title': 'Pets'
-    },
-    {
-      'icon': Icons.bike_scooter,
-      'title': 'Bikes'
-    },
-    {
-      'icon': Icons.laptop,
-      'title': 'Laptop'
-    },
-    {
-      'icon': Icons.phone,
-      'title': 'Mobiles'
-    },
-    {
-      'icon': Icons.car_crash,
-      'title': 'Cars'
-    }
-  ];
-
-  Map filterCategory = {
-    'All': false,
-    'New': false,
-    'Popular': false,
-    'Men': false,
-    'Women': false,
-    'Kids': false
-  };
-
-  List products = [
+List products = [
     {
       'name': 'Jeans Jaket',
       'img': 'https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -82,6 +39,53 @@ class _HomePageState extends State<HomePage> {
     },
   ];
 
+  List categories = [
+    {
+      'icon': Icons.pets,
+      'title': 'Pets'
+    },
+    {
+      'icon': Icons.bike_scooter,
+      'title': 'Bikes'
+    },
+    {
+      'icon': Icons.laptop,
+      'title': 'Laptop'
+    },
+    {
+      'icon': Icons.phone,
+      'title': 'Mobiles'
+    },
+    {
+      'icon': Icons.car_crash,
+      'title': 'Cars'
+    }
+  ];
+
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<String> imgs = [
+    'https://images.pexels.com/photos/735551/pexels-photo-735551.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/2468789/pexels-photo-2468789.jpeg?auto=compress&cs=tinysrgb&w=800',
+    'https://images.pexels.com/photos/5869617/pexels-photo-5869617.jpeg?auto=compress&cs=tinysrgb&w=800'
+  ];
+
+  Map filterCategory = {
+    'All': false,
+    'New': false,
+    'Popular': false,
+    'Men': false,
+    'Women': false,
+    'Kids': false
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,19 +108,7 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: false,
         actions: [
-          Container(
-            margin: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              shape: BoxShape.circle
-            ),
-            child: IconButton(
-              icon: Icon(Icons.notifications, color: AppColors.jeansColor, size: 20.0,),
-              onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (_) => NotificationScreen()));
-              },
-            ),
-          ),
+          NotificationButton()
         ],
       ),
       body: ListView(
@@ -125,7 +117,9 @@ class _HomePageState extends State<HomePage> {
           ListTile(
             title: Text('  Category', style: AppFonts.primaryBlackStyle),
             trailing: Text('see all  ', style: AppFonts.subGreyStyle),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (_) => AllCategoriesScreen()));
+            },
           ),
           buildCategorySection(),
           flashSaleSectionHeader(),
@@ -179,7 +173,9 @@ class _HomePageState extends State<HomePage> {
         children: [
           for (int i = 0; i < categories.length; i++)
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (_) => SearchResultScreen(screenTitle: categories[i]['title'])));
+            },
             child: Container(
               width: 100,
               child: Column(
@@ -298,58 +294,7 @@ class _HomePageState extends State<HomePage> {
         physics: NeverScrollableScrollPhysics(),
         children: [
           for (int i = 0; i < products.length; i++)
-          InkWell(
-            onTap: () {},
-            child: Container(
-              margin: EdgeInsets.fromLTRB(10.0, 5, 0, 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: AppColors.whiteColor,
-              ),
-              padding: EdgeInsets.fromLTRB(10.0, 5, 8.0, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 200.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      image: DecorationImage(
-                        image: NetworkImage(products[i]['img']),
-                        fit: BoxFit.fill
-                      )
-                    ),
-                    alignment: Alignment.topRight,
-                    padding: EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        shape: BoxShape.circle
-                      ),
-                      child: IconButton(
-                        icon: Icon(products[i]['isFav'] ? Icons.favorite : Icons.favorite_border),
-                        color: AppColors.jeansColor,
-                        iconSize: 20.0,
-                        onPressed: () {
-                          products[i]['isFav'] = !products[i]['isFav'];
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(products[i]['name'], style: AppFonts.subBlackStyle),
-                      Text('⭐ ${products[i]['rate']}', style: AppFonts.subGreyStyle),
-                    ],
-                  ),
-                  Text('${products[i]['price']}EGP', style: AppFonts.subJeansStyle),
-                ],
-              ),
-            ),
-          )
+          ProductWidget(productData: products[i])
         ],
       ),
     );

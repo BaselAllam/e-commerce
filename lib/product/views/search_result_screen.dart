@@ -1,19 +1,21 @@
 import 'package:ecommerce/app_setting/views/home_page_screen.dart';
 import 'package:ecommerce/shared/shared_theme/app_colors.dart';
 import 'package:ecommerce/shared/shared_theme/app_fonts.dart';
-import 'package:ecommerce/shared/shared_widgets/notification_button.dart';
+import 'package:ecommerce/shared/shared_widgets/back_btn.dart';
 import 'package:ecommerce/shared/shared_widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 
 
-class WishlistScreen extends StatefulWidget {
-  const WishlistScreen({super.key});
+
+class SearchResultScreen extends StatefulWidget {
+  final String screenTitle;
+  SearchResultScreen({required this.screenTitle});
 
   @override
-  State<WishlistScreen> createState() => _WishlistScreenState();
+  State<SearchResultScreen> createState() => _SearchResultScreenState();
 }
 
-class _WishlistScreenState extends State<WishlistScreen> {
+class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +23,21 @@ class _WishlistScreenState extends State<WishlistScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        title: Text('Wishlist', style: AppFonts.primaryBlackStyle),
+        title: Text(widget.screenTitle, style: AppFonts.primaryBlackStyle),
         centerTitle: false,
-        actions: [
-          NotificationButton()
-        ],
+        leading: BackBtn(),
+        bottom: PreferredSize(
+          preferredSize: Size(0.0, 50),
+          child: ListTile(
+            title: Text('${products.length} Products', style: AppFonts.primaryGreyStyle,),
+            trailing: IconButton(
+              icon: Icon(Icons.tune),
+              color: AppColors.jeansColor,
+              iconSize: 25.0,
+              onPressed: () {},
+            ),
+          )
+        ),
       ),
       body: Container(
       margin: EdgeInsets.all(10.0),

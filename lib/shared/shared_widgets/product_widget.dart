@@ -1,6 +1,8 @@
+import 'package:ecommerce/product/views/product_details_screen.dart';
 import 'package:ecommerce/shared/shared_theme/app_colors.dart';
 import 'package:ecommerce/shared/shared_theme/app_fonts.dart';
 import 'package:ecommerce/shared/shared_widgets/fav_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,7 +18,9 @@ class _ProductWidgetState extends State<ProductWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, CupertinoPageRoute(builder: (_) => ProductDetailsScreen()));
+      },
       child: Container(
         margin: EdgeInsets.fromLTRB(10.0, 5, 0, 5),
         decoration: BoxDecoration(

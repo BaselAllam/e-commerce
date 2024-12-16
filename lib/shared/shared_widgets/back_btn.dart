@@ -16,14 +16,7 @@ class _BackBtnState extends State<BackBtn> {
       onTap: () {
         Navigator.pop(context);
       },
-      child: Container(
-        margin: EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.blackColor, width: 0.5),
-          shape: BoxShape.circle
-        ),
-        child: Icon(Icons.arrow_back_ios, color: AppColors.blackColor, size: 20.0),
-      ),
+      child: Icon(Icons.arrow_back, color: AppColors.jeansColor, size: 25.0),
     );
   }
 }

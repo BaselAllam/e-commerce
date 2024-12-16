@@ -6,7 +6,6 @@
 
 
  Next Session:
-  - ProductDetails Screen
   - Input Fields
   - Dialogs
 

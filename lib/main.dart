@@ -6,10 +6,7 @@
 
 
  Next Session:
-  - Input Fields
-  - Dialogs
-
- Next Session:
+  - DatePicker
   - Packages & Libraries 
   - Shared Preferences
   - icon Launcher
@@ -34,7 +31,8 @@
 
 */
 
-import 'package:ecommerce/app_setting/views/bottom_nav_bar.dart';
+
+import 'package:ecommerce/user/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavBarScreen()
+      home: LoginScreen()
     );
   }
 }

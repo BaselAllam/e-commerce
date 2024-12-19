@@ -1,6 +1,9 @@
+import 'package:ecommerce/app_setting/views/about_us.dart';
 import 'package:ecommerce/shared/shared_theme/app_colors.dart';
 import 'package:ecommerce/shared/shared_theme/app_fonts.dart';
 import 'package:ecommerce/shared/shared_widgets/notification_button.dart';
+import 'package:ecommerce/user/views/user_profile_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -17,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     {
       'icon': Icons.person,
       'title': 'Profile',
-      'screen': ''
+      'screen': UserProfileScreen()
     },
     {
       'icon': Icons.settings,
@@ -27,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     {
       'icon': Icons.info_outline,
       'title': 'About us',
-      'screen': ''
+      'screen': AboutUsScreen()
     },
     {
       'icon': Icons.phone,
@@ -83,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title: Text(profileSections[i]['title'], style: AppFonts.subBlackStyle),
                 trailing: Icon(Icons.arrow_forward_ios, color: AppColors.greyColor, size: 20.0),
                 onTap: () {
-                  // Navigator.push(context, CupertinoPageRoute(builder: (_) => SearchResultScreen(screenTitle: categories[i]['title'])));
+                  Navigator.push(context, CupertinoPageRoute(builder: (_) => profileSections[i]['screen']));
                 },
               ),
             ),
@@ -98,7 +101,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Icon(Icons.logout, color: Colors.red, size: 25.0)
               ),
               title: Text('Sign out', style: TextStyle(color: Colors.red, fontSize: 20.0)),
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: Text('Attention', style: AppFonts.primaryBlackStyle),
+                      content: Text('Are u sure u want to logout ?', style: AppFonts.subGreyStyle),
+                      actions: [
+                        TextButton(
+                          child: Text('Yes', style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.bold)),
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            fixedSize: Size(100, 30)
+                          ),
+                          onPressed: () {},
+                        ),
+                        TextButton(
+                          child: Text('No', style: TextStyle(color: Colors.green, fontSize: 12, fontWeight: FontWeight.bold)),
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            fixedSize: Size(100, 30)
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                );
+              },
             ),
           ],
         )

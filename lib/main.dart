@@ -11,11 +11,10 @@
   - Shared Preferences
   - icon Launcher
   - Device Camera
-  - Integration Google Maps
+  - Complete Google Map Functions
 
  Next Session:
   - Intro to Front-end, Back-end & APIs
-  - Integraations Firebase
   - Intro State Managment
 
  Next Session:
@@ -33,10 +32,22 @@
 
 
 import 'package:ecommerce/user/views/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  const firebaseConfig = FirebaseOptions(
+    apiKey: "AIzaSyD2vaIydiu7SCllheUN0IFRHEIg04TFL7E",
+    authDomain: "",
+    projectId: "ecommerce-73033",
+    storageBucket: "ecommerce-73033.firebasestorage.app",
+    messagingSenderId: "your-messaging-sender-id",
+    appId: "1:1085891780434:android:fbe45a33fe6a8c1045a48b",
+  );
+  await Firebase.initializeApp(options: firebaseConfig);
   runApp(MyApp());
 }
 

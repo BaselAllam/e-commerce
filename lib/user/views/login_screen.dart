@@ -6,6 +6,8 @@ import 'package:ecommerce/shared/shared_widgets/snack.dart';
 import 'package:ecommerce/user/views/register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 
@@ -107,10 +109,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text('Sign up', style: AppFonts.miniJeansStyle),
                 ],
               ),
+            ),
+            Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(30.0444, 31.2357),
+                  zoom: 12
+                ),
+                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+  getUserLocation() {
+    Geolocator.getCurrentPosition();
   }
 }

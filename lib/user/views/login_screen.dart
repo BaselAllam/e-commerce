@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     fixedSize: Size(200, 50)
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (emailController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         snack(txt: 'Email Required')
@@ -91,7 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         snack(txt: 'Success', color: Colors.green)
                       );
-                      Navigator.pushReplacement(context, CupertinoPageRoute(builder: (_) => BottomNavBarScreen()));
+                    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                    sharedPreferences.setBool('isLoggedIn', true);
+                    Navigator.pushReplacement(context, CupertinoPageRoute(builder: (_) => BottomNavBarScreen()));
                     }
                   },
                 ),
@@ -110,22 +113,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(30.0444, 31.2357),
-                  zoom: 12
-                ),
-                myLocationButtonEnabled: true,
-                myLocationEnabled: true,
-              ),
-            )
+            // Container(
+            //   height: 200,
+            //   width: MediaQuery.of(context).size.width,
+            //   margin: EdgeInsets.all(10.0),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(20.0),
+            //   ),
+            //   child: GoogleMap(
+            //     initialCameraPosition: CameraPosition(
+            //       target: LatLng(30.0444, 31.2357),
+            //       zoom: 12
+            //     ),
+            //     myLocationButtonEnabled: true,
+            //     myLocationEnabled: true,
+            //   ),
+            // )
           ],
         ),
       ),

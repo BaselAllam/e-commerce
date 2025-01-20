@@ -28,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isSecure = true;
   bool isTermsAccepted = false;
   String gender = '';
+  String birthDate = '';
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +126,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ];
                 },
               ),
+            ),
+            ListTile(
+              title: Text('Birthdate', style: AppFonts.primaryBlackStyle),
+              subtitle: Text(birthDate, style: AppFonts.subGreyStyle),
+              trailing: IconButton(
+                icon: Icon(Icons.calendar_month),
+                color: AppColors.jeansColor,
+                iconSize: 20,
+                onPressed: () async {
+                  DateTime? selectedDate = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(DateTime.now().year - 100),
+                    lastDate: DateTime(DateTime.now().year - 25),
+                    currentDate: DateTime(DateTime.now().year - 25)
+                  );
+                  birthDate = selectedDate.toString().substring(0, 11);
+                  setState(() {});
+                },
+              )
             ),
             ListTile(
               title: Text('Accept our Terms & Conditions', style: AppFonts.primaryBlackStyle),

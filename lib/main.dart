@@ -1,21 +1,10 @@
 
 /*
 
- Ui Design => https://www.figma.com/design/lD9YlPc3h0HVl8TLSFokRC/Clothing-Store-App%2FFashion-E-Commerce-App-%7C-App%C2%A0UI%C2%A0Kit-(Community)?node-id=0-1&node-type=canvas&t=dupwFb2mPfH8NhHT-0
- 
-
-
- Next Session:
-  - DatePicker
-  - Packages & Libraries 
-  - Shared Preferences
-  - icon Launcher
-  - Device Camera
-  - Complete Google Map Functions
-
  Next Session:
   - Intro to Front-end, Back-end & APIs
   - Intro State Managment
+  - Complete Google Map Functions
 
  Next Session:
   - State Managment
@@ -31,9 +20,11 @@
 */
 
 
+import 'package:ecommerce/app_setting/views/bottom_nav_bar.dart';
 import 'package:ecommerce/user/views/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -52,12 +43,36 @@ void main() async {
 }
 
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isLoggedIn = false;
+
+  @override
+  void initState() {
+    checkIsLoggedIn();
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen()
+      home: isLoggedIn ? BottomNavBarScreen() : LoginScreen()
     );
+  }
+
+  checkIsLoggedIn() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool? isLogged = sharedPreferences.getBool('isLoggedIn');
+    if (isLogged == null || !isLogged) {
+      isLoggedIn = false; 
+    } else {
+      isLoggedIn = true;
+    }
+    setState(() {});
   }
 }
